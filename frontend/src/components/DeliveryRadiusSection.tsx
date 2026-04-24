@@ -109,10 +109,12 @@ export function DeliveryRadiusSection({ accessToken }: Props) {
 
   return (
     <div className="schedule-block schedule-block--action">
-      <geraldo-card radius="outer" elevation="mid" className="schedule-card">
-        <geraldo-text slot="header" variant="h3-section" weight="medium" as="h3">
-          Entrega por raio (frete)
-        </geraldo-text>
+      <section className="app-panel-card schedule-card" aria-labelledby="schedule-radius-title">
+        <div className="app-panel-card__header">
+          <geraldo-text id="schedule-radius-title" variant="h3-section" weight="medium" as="h3">
+            Entrega por raio (frete)
+          </geraldo-text>
+        </div>
         <div className="card-lede">
           <geraldo-text variant="body-default" as="p">
             Ajuste o valor do frete para cada distância de entrega. Faixas que já existem na loja aparecem com um
@@ -242,12 +244,12 @@ export function DeliveryRadiusSection({ accessToken }: Props) {
           </div>
         </div>
 
-        <div slot="footer" className="card-footer-actions card-footer-actions--end">
+        <div className="card-footer-actions card-footer-actions--end">
           <ActionButton variant="filled" color="primary" loading={saving} disabled={busy} onClick={() => void saveRadius()}>
             Salvar frete por raio
           </ActionButton>
         </div>
-      </geraldo-card>
+      </section>
     </div>
   );
 }

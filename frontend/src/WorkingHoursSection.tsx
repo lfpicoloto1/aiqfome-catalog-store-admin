@@ -185,10 +185,12 @@ export function WorkingHoursSection({
 
       <div className="schedule-panels">
           <div className="schedule-block schedule-block--info">
-            <geraldo-card radius="outer" elevation="mid" className="schedule-card">
-              <geraldo-text slot="header" variant="h3-section" weight="medium" as="h3">
-                Horários da sua loja
-              </geraldo-text>
+            <section className="app-panel-card schedule-card" aria-labelledby="schedule-overview-title">
+              <div className="app-panel-card__header">
+                <geraldo-text id="schedule-overview-title" variant="h3-section" weight="medium" as="h3">
+                  Horários da sua loja
+                </geraldo-text>
+              </div>
               <div className="card-lede">
                 <geraldo-text variant="body-default" as="p">
                   Visão geral do que está cadastrado na plataforma. Os horários carregam ao abrir o painel; use
@@ -230,7 +232,7 @@ export function WorkingHoursSection({
                 </div>
               )}
 
-              <div slot="footer" className="card-footer-actions">
+              <div className="card-footer-actions">
                 <ActionButton
                   variant="filled"
                   color="primary"
@@ -241,14 +243,16 @@ export function WorkingHoursSection({
                   Sincronizar
                 </ActionButton>
               </div>
-            </geraldo-card>
+            </section>
           </div>
 
           <div className="schedule-block schedule-block--action">
-            <geraldo-card radius="outer" elevation="mid" className="schedule-card">
-              <geraldo-text slot="header" variant="h3-section" weight="medium" as="h3">
-                Alterar horários por dia
-              </geraldo-text>
+            <section className="app-panel-card schedule-card" aria-labelledby="schedule-edit-title">
+              <div className="app-panel-card__header">
+                <geraldo-text id="schedule-edit-title" variant="h3-section" weight="medium" as="h3">
+                  Alterar horários por dia
+                </geraldo-text>
+              </div>
               <div className="card-lede">
                 <geraldo-text variant="body-default" as="p">
                   Toque no dia para expandir e editar horários em formato 24 horas. O resumo mostra o estado atual
@@ -431,7 +435,7 @@ export function WorkingHoursSection({
                 })}
               </div>
 
-              <div slot="footer" className="card-footer-actions card-footer-actions--end">
+              <div className="card-footer-actions card-footer-actions--end">
                 <ActionButton
                   variant="filled"
                   color="primary"
@@ -442,14 +446,16 @@ export function WorkingHoursSection({
                   Salvar horários
                 </ActionButton>
               </div>
-            </geraldo-card>
+            </section>
           </div>
 
           <div className="schedule-block schedule-block--action">
-            <geraldo-card radius="outer" elevation="mid" className="schedule-card">
-              <geraldo-text slot="header" variant="h3-section" weight="medium" as="h3">
-                Preparo e prazo de entrega
-              </geraldo-text>
+            <section className="app-panel-card schedule-card" aria-labelledby="schedule-service-title">
+              <div className="app-panel-card__header">
+                <geraldo-text id="schedule-service-title" variant="h3-section" weight="medium" as="h3">
+                  Preparo e prazo de entrega
+                </geraldo-text>
+              </div>
               <div className="card-lede">
                 <geraldo-text variant="body-default" as="p">
                   Escolha o tempo de preparo (de 10 em 10 minutos) e o prazo de entrega que o cliente vê no app. Um
@@ -491,7 +497,7 @@ export function WorkingHoursSection({
                 />
               </div>
 
-              <div slot="footer" className="card-footer-actions card-footer-actions--end">
+              <div className="card-footer-actions card-footer-actions--end">
                 <ActionButton
                   variant="filled"
                   color="primary"
@@ -502,7 +508,7 @@ export function WorkingHoursSection({
                   Salvar preparo e prazo de entrega
                 </ActionButton>
               </div>
-            </geraldo-card>
+            </section>
           </div>
 
           <DeliveryRadiusSection accessToken={accessToken} />
