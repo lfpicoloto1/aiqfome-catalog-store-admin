@@ -410,10 +410,21 @@ body {
 .store-hero__orders-text {
   flex: 1 1 auto;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+}
+
+/* geraldo-text sem shadow é inline por defeito — força bloco para título/caption em linhas separadas. */
+.store-hero__orders-text > geraldo-text {
+  display: block;
+  width: 100%;
+  max-width: 100%;
 }
 
 .store-hero__orders-title {
-  margin: 0 0 0.35rem;
+  margin: 0;
 }
 
 .store-hero__orders-caption,
@@ -433,7 +444,78 @@ body {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  align-self: flex-start;
   padding-top: 0.15rem;
+  min-width: 3rem;
+  min-height: 1.75rem;
+}
+
+/* Fallback quando geraldo-switch não renderiza (largura 0 / não definido). */
+.open-switch-native {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 28px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.open-switch-native--disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.open-switch-native__input {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 48px;
+  height: 28px;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.open-switch-native__ui {
+  display: block;
+  width: 48px;
+  height: 28px;
+  border-radius: var(--geraldo-radius-button, 8px);
+  background: var(--geraldo-color-neutral-300, #d3d3d3);
+  border: 2px solid var(--geraldo-color-border, #d3d3d3);
+  box-sizing: border-box;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.open-switch-native__ui::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--geraldo-color-surface, #fff);
+  box-shadow: var(--geraldo-shadow-low, 0 1px 3px rgb(37 37 37 / 0.12));
+  transition: transform 0.18s ease;
+}
+
+.open-switch-native__input:checked + .open-switch-native__ui {
+  background: var(--geraldo-color-primary-400, #7b1fa2);
+  border-color: var(--geraldo-color-primary-600, #580f78);
+}
+
+.open-switch-native__input:checked + .open-switch-native__ui::after {
+  transform: translateX(20px);
+}
+
+.open-switch-native__input:focus-visible + .open-switch-native__ui {
+  outline: 2px solid var(--geraldo-color-primary-600, #580f78);
+  outline-offset: 2px;
 }
 
 .delivery-radius-empty {
@@ -1052,6 +1134,15 @@ geraldo-card.schedule-card .delivery-radius-feedback {
 
   .store-hero-panel {
     box-shadow: var(--geraldo-shadow-mid, 0 4px 12px rgb(0 0 0 / 0.45));
+  }
+
+  .open-switch-native__ui {
+    background: #444;
+    border-color: #555;
+  }
+
+  .open-switch-native__ui::after {
+    background: #e8e8e8;
   }
 
   .inline-link {

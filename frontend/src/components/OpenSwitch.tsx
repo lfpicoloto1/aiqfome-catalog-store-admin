@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 type Props = {
   checked: boolean;
@@ -6,17 +6,48 @@ type Props = {
   onChecked: (v: boolean) => void;
 };
 
-/** Interruptor Geraldo (Lit) com estado controlado a partir do React. */
+/**
+ * Interruptor Geraldo (Lit) controlado pelo React.
+ * Se o Web Component não tiver largura visível (prod sem shadow), usa checkbox nativo estilizado.
+ */
 export function OpenSwitch({ checked, disabled, onChecked }: Props) {
-  const ref = useRef<HTMLElement & { checked?: boolean }>(null);
+  const wcRef = useRef<HTMLElement & { checked?: boolean }>(null);
+  const [useNative, setUseNative] = useState(false);
+
+  useLayoutEffect(() => {
+    if (useNative) return;
+    const el = wcRef.current;
+    if (!el) return;
+    let cancelled = false;
+    const considerFallback = () => {
+      if (cancelled) return;
+      const defined = !!customElements.get("geraldo-switch");
+      const w = el.getBoundingClientRect().width;
+      if (!defined || w < 12) setUseNative(true);
+    };
+    const t = window.setTimeout(considerFallback, 450);
+    void customElements.whenDefined("geraldo-switch").then(() => {
+      if (cancelled) return;
+      window.clearTimeout(t);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(considerFallback);
+      });
+    });
+    return () => {
+      cancelled = true;
+      window.clearTimeout(t);
+    };
+  }, [useNative]);
 
   useEffect(() => {
-    const el = ref.current;
+    if (useNative) return;
+    const el = wcRef.current;
     if (el) el.checked = checked;
-  }, [checked]);
+  }, [checked, useNative]);
 
   useEffect(() => {
-    const el = ref.current;
+    if (useNative) return;
+    const el = wcRef.current;
     if (!el) return;
     const fn = (e: Event) => {
       const d = (e as CustomEvent<{ checked?: boolean }>).detail;
@@ -24,7 +55,27 @@ export function OpenSwitch({ checked, disabled, onChecked }: Props) {
     };
     el.addEventListener("geraldo-change", fn);
     return () => el.removeEventListener("geraldo-change", fn);
-  }, [onChecked]);
+  }, [onChecked, useNative]);
 
-  return <geraldo-switch ref={ref} disabled={disabled} />;
+  if (useNative) {
+    return (
+      <label
+        className={`open-switch-native${disabled ? " open-switch-native--disabled" : ""}`}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <input
+          type="checkbox"
+          role="switch"
+          className="open-switch-native__input"
+          checked={checked}
+          disabled={disabled}
+          onChange={(e) => onChecked(e.target.checked)}
+        />
+        <span className="open-switch-native__ui" aria-hidden />
+      </label>
+    );
+  }
+
+  return <geraldo-switch ref={wcRef} disabled={disabled} />;
 }
