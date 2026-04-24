@@ -294,12 +294,11 @@ export function WorkingHoursSection({
                         </button>
                         <div
                           className="day-accordion__switch"
+                          role="group"
+                          aria-label={`${UI_WEEK_DAY_LABEL[n]}: alternar dia aberto ou fechado para clientes`}
                           onClick={(e) => e.stopPropagation()}
                           onKeyDown={(e) => e.stopPropagation()}
                         >
-                          <geraldo-text variant="caption" as="span">
-                            Aberto
-                          </geraldo-text>
                           <OpenSwitch
                             checked={d.open}
                             disabled={formDisabled}
@@ -401,7 +400,7 @@ export function WorkingHoursSection({
                             </div>
                           ) : (
                             <geraldo-text variant="caption" as="p" className="day-closed-note">
-                              Este dia aparecerá como fechado para clientes. Ative &quot;Aberto&quot; acima para
+                              Este dia aparecerá como fechado para clientes. Use o interruptor acima para abrir o dia e
                               definir períodos.
                             </geraldo-text>
                           )}
