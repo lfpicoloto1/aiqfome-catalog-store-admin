@@ -368,111 +368,113 @@ export function App() {
               elevation="mid"
               className={`store-hero${storeBusy ? " store-hero--refreshing" : ""}`}
             >
-              <div className="store-hero__layout">
-                <div className="store-hero__avatar-wrap">
-                  {avatarUrl ? (
-                    <img className="store-hero__avatar" src={avatarUrl} alt="" />
-                  ) : (
-                    <div className="store-hero__avatar store-hero__avatar--placeholder" aria-hidden>
-                      <geraldo-text variant="h3-section" weight="medium" as="span">
-                        {(store.name ?? "?").slice(0, 1).toUpperCase()}
-                      </geraldo-text>
+              <div className="store-hero__body">
+                <div className="store-hero__layout">
+                  <div className="store-hero__avatar-wrap">
+                    {avatarUrl ? (
+                      <img className="store-hero__avatar" src={avatarUrl} alt="" />
+                    ) : (
+                      <div className="store-hero__avatar store-hero__avatar--placeholder" aria-hidden>
+                        <geraldo-text variant="h3-section" weight="medium" as="span">
+                          {(store.name ?? "?").slice(0, 1).toUpperCase()}
+                        </geraldo-text>
+                      </div>
+                    )}
+                  </div>
+                  <div className="store-hero__content">
+                    <geraldo-text variant="h3-section" weight="medium" as="h2">
+                      {store.name ?? "—"}
+                    </geraldo-text>
+                    <geraldo-text variant="body-default" as="p">
+                      {store.corporate_name ?? "—"}
+                    </geraldo-text>
+                    <div className="stat-chips" role="list">
+                      <div className="stat-chip" role="listitem">
+                        <geraldo-text variant="caption" as="span">
+                          CNPJ
+                        </geraldo-text>
+                        <geraldo-text variant="body-strong" as="span">
+                          {store.document_number ?? "—"}
+                        </geraldo-text>
+                      </div>
+                      <div className="stat-chip" role="listitem">
+                        <geraldo-text variant="caption" as="span">
+                          ID loja
+                        </geraldo-text>
+                        <geraldo-text variant="body-strong" as="span">
+                          {store.id ?? "—"}
+                        </geraldo-text>
+                      </div>
+                      <div className="stat-chip" role="listitem">
+                        <geraldo-text variant="caption" as="span">
+                          Cidade (ID)
+                        </geraldo-text>
+                        <geraldo-text variant="body-strong" as="span">
+                          {store.city_id ?? "—"}
+                        </geraldo-text>
+                      </div>
+                      <div className="stat-chip" role="listitem">
+                        <geraldo-text variant="caption" as="span">
+                          Preparo
+                        </geraldo-text>
+                        <geraldo-text variant="body-strong" as="span">
+                          {store.time_to_prepare_order != null ? `${store.time_to_prepare_order} min` : "—"}
+                        </geraldo-text>
+                      </div>
+                      <div className="stat-chip" role="listitem">
+                        <geraldo-text variant="caption" as="span">
+                          Entrega
+                        </geraldo-text>
+                        <geraldo-text variant="body-strong" as="span">
+                          {store.time_to_deliver ?? "—"}
+                        </geraldo-text>
+                      </div>
+                      <div className="stat-chip" role="listitem">
+                        <geraldo-text variant="caption" as="span">
+                          Comissão
+                        </geraldo-text>
+                        <geraldo-text variant="body-strong" as="span">
+                          {store.commission != null ? `${store.commission}%` : "—"}
+                        </geraldo-text>
+                      </div>
                     </div>
-                  )}
-                </div>
-                <div className="store-hero__content">
-                  <geraldo-text variant="h3-section" weight="medium" as="h2">
-                    {store.name ?? "—"}
-                  </geraldo-text>
-                  <geraldo-text variant="body-default" as="p">
-                    {store.corporate_name ?? "—"}
-                  </geraldo-text>
-                  <div className="stat-chips" role="list">
-                    <div className="stat-chip" role="listitem">
-                      <geraldo-text variant="caption" as="span">
-                        CNPJ
-                      </geraldo-text>
-                      <geraldo-text variant="body-strong" as="span">
-                        {store.document_number ?? "—"}
-                      </geraldo-text>
-                    </div>
-                    <div className="stat-chip" role="listitem">
-                      <geraldo-text variant="caption" as="span">
-                        ID loja
-                      </geraldo-text>
-                      <geraldo-text variant="body-strong" as="span">
-                        {store.id ?? "—"}
-                      </geraldo-text>
-                    </div>
-                    <div className="stat-chip" role="listitem">
-                      <geraldo-text variant="caption" as="span">
-                        Cidade (ID)
-                      </geraldo-text>
-                      <geraldo-text variant="body-strong" as="span">
-                        {store.city_id ?? "—"}
-                      </geraldo-text>
-                    </div>
-                    <div className="stat-chip" role="listitem">
-                      <geraldo-text variant="caption" as="span">
-                        Preparo
-                      </geraldo-text>
-                      <geraldo-text variant="body-strong" as="span">
-                        {store.time_to_prepare_order != null ? `${store.time_to_prepare_order} min` : "—"}
-                      </geraldo-text>
-                    </div>
-                    <div className="stat-chip" role="listitem">
-                      <geraldo-text variant="caption" as="span">
-                        Entrega
-                      </geraldo-text>
-                      <geraldo-text variant="body-strong" as="span">
-                        {store.time_to_deliver ?? "—"}
-                      </geraldo-text>
-                    </div>
-                    <div className="stat-chip" role="listitem">
-                      <geraldo-text variant="caption" as="span">
-                        Comissão
-                      </geraldo-text>
-                      <geraldo-text variant="body-strong" as="span">
-                        {store.commission != null ? `${store.commission}%` : "—"}
-                      </geraldo-text>
+                    <div className="store-hero__badges">
+                      <geraldo-badge tone={store.is_delivery_radius_active ? "info" : "neutral"}>
+                        Raio de entrega: {store.is_delivery_radius_active ? "ativo" : "inativo"}
+                      </geraldo-badge>
+                      {store.storeFrontOpen !== null ? (
+                        <geraldo-badge tone={store.storeFrontOpen ? "success" : "neutral"}>
+                          Pedidos na plataforma: {store.storeFrontOpen ? "aberta" : "fechada"}
+                        </geraldo-badge>
+                      ) : null}
                     </div>
                   </div>
-                  <div className="store-hero__badges">
-                    <geraldo-badge tone={store.is_delivery_radius_active ? "info" : "neutral"}>
-                      Raio de entrega: {store.is_delivery_radius_active ? "ativo" : "inativo"}
-                    </geraldo-badge>
-                    {store.storeFrontOpen !== null ? (
-                      <geraldo-badge tone={store.storeFrontOpen ? "success" : "neutral"}>
-                        Pedidos na plataforma: {store.storeFrontOpen ? "aberta" : "fechada"}
-                      </geraldo-badge>
+                </div>
+                <div className="store-hero__orders store-hero__orders--card-body">
+                  <div className="store-hero__orders-text">
+                    <geraldo-text variant="body-default" weight="medium" as="p" className="store-hero__orders-title">
+                      Receber pedidos agora
+                    </geraldo-text>
+                    <geraldo-text variant="caption" as="p" className="store-hero__orders-caption">
+                      {store.storeFrontOpen === null
+                        ? "A plataforma não enviou o estado na última sincronização. O interruptor abaixo chama abrir ou fechar loja (API V2)."
+                        : store.storeFrontOpen
+                          ? "Sua loja está aberta para novos pedidos na aiqfome."
+                          : "Sua loja está fechada para novos pedidos na aiqfome."}
+                    </geraldo-text>
+                    {storeToggleBusy ? (
+                      <geraldo-text variant="caption" as="p" className="store-hero__orders-loading">
+                        Aplicando na plataforma…
+                      </geraldo-text>
                     ) : null}
                   </div>
-                </div>
-              </div>
-              <div className="store-hero__orders store-hero__orders--card-body">
-                <div className="store-hero__orders-text">
-                  <geraldo-text variant="body-default" weight="medium" as="p" className="store-hero__orders-title">
-                    Receber pedidos agora
-                  </geraldo-text>
-                  <geraldo-text variant="caption" as="p" className="store-hero__orders-caption">
-                    {store.storeFrontOpen === null
-                      ? "A plataforma não enviou o estado na última sincronização. O interruptor abaixo chama abrir ou fechar loja (API V2)."
-                      : store.storeFrontOpen
-                        ? "Sua loja está aberta para novos pedidos na aiqfome."
-                        : "Sua loja está fechada para novos pedidos na aiqfome."}
-                  </geraldo-text>
-                  {storeToggleBusy ? (
-                    <geraldo-text variant="caption" as="p" className="store-hero__orders-loading">
-                      Aplicando na plataforma…
-                    </geraldo-text>
-                  ) : null}
-                </div>
-                <div className="store-hero__orders-switch">
-                  <OpenSwitch
-                    checked={store.storeFrontOpen === true}
-                    disabled={storeToggleBusy || storeBusy}
-                    onChecked={onStoreFrontToggle}
-                  />
+                  <div className="store-hero__orders-switch">
+                    <OpenSwitch
+                      checked={store.storeFrontOpen === true}
+                      disabled={storeToggleBusy || storeBusy}
+                      onChecked={onStoreFrontToggle}
+                    />
+                  </div>
                 </div>
               </div>
               <div slot="footer" className="card-footer-meta">

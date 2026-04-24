@@ -282,6 +282,21 @@ body {
   transition: outline-color 0.2s ease;
 }
 
+geraldo-card.store-hero {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Único filho no slot default do geraldo-card: layout + pedidos em coluna. */
+.store-hero__body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
 .store-hero__layout {
   display: flex;
   flex-wrap: wrap;
@@ -372,11 +387,6 @@ body {
   box-sizing: border-box;
   min-width: 0;
   margin-top: 1rem;
-}
-
-geraldo-card.store-hero::part(card) {
-  overflow: visible;
-  min-width: 0;
 }
 
 .store-hero__orders-text {
