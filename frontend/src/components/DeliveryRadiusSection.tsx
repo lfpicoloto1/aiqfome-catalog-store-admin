@@ -95,7 +95,7 @@ export function DeliveryRadiusSection({ accessToken }: Props) {
         await createStoreDeliveryCostsRadius(accessToken, buildRadiusCreatePayload(withoutId));
       }
       await loadCosts({ skipFeedbackClear: true });
-      setFeedback({ kind: "success", text: "Frete por raio atualizado com sucesso." });
+      setFeedback({ kind: "success", text: "Entrega por raio atualizada com sucesso." });
     } catch (e) {
       setFeedback({ kind: "error", text: e instanceof Error ? e.message : String(e) });
     } finally {
@@ -112,12 +112,12 @@ export function DeliveryRadiusSection({ accessToken }: Props) {
       <section className="app-panel-card schedule-card" aria-labelledby="schedule-radius-title">
         <div className="app-panel-card__header">
           <geraldo-text id="schedule-radius-title" variant="h3-section" weight="medium" as="h3">
-            Entrega por raio (frete)
+            Entrega por raio
           </geraldo-text>
         </div>
         <div className="card-lede">
           <geraldo-text variant="body-default" as="p">
-            Ajuste o valor do frete para cada distância de entrega. Faixas que já existem na loja aparecem com um
+            Ajuste o valor de entrega para cada distância. Faixas que já existem na loja aparecem com um
             número de referência; faixas novas você inclui na tabela e confirma ao salvar. Outras regras de preço
             ficam por conta do Aiqfome e não aparecem aqui.
           </geraldo-text>
@@ -135,7 +135,7 @@ export function DeliveryRadiusSection({ accessToken }: Props) {
           <div className="empty-state delivery-radius-empty">
             <geraldo-badge tone="neutral">Ainda sem cadastro</geraldo-badge>
             <geraldo-text variant="body-default" as="p">
-              Não encontramos faixas de frete por distância para esta loja. Você pode cadastrar abaixo e salvar, se a
+              Não encontramos faixas de entrega por distância para esta loja. Você pode cadastrar abaixo e salvar, se a
               sua conta permitir.
             </geraldo-text>
           </div>
@@ -144,19 +144,19 @@ export function DeliveryRadiusSection({ accessToken }: Props) {
         {!loading && hadRadiusKey && parsedCount === 0 ? (
           <div className="empty-state delivery-radius-empty">
             <geraldo-text variant="body-default" as="p">
-              Não há faixas de frete por raio cadastradas. Adicione linhas abaixo e salve.
+              Não há faixas de entrega por raio cadastradas. Adicione linhas abaixo e salve.
             </geraldo-text>
           </div>
         ) : null}
 
         <div className="delivery-radius-editor">
-          <div className="delivery-radius-table-wrap" role="region" aria-label="Faixas de frete por distância">
+          <div className="delivery-radius-table-wrap" role="region" aria-label="Faixas de entrega por distância">
             <table className="delivery-radius-table">
               <thead>
                 <tr>
                   <th scope="col">Ref.</th>
                   <th scope="col">Distância (km)</th>
-                  <th scope="col">Valor do frete</th>
+                  <th scope="col">Valor de entrega</th>
                   <th scope="col">Taxa volta</th>
                   <th scope="col">Código / nome da faixa</th>
                   <th scope="col" />
@@ -195,7 +195,7 @@ export function DeliveryRadiusSection({ accessToken }: Props) {
                         disabled={busy}
                         value={r.value || ""}
                         onChange={(e) => updateRow(i, { value: Number(e.target.value) || 0 })}
-                        aria-label={`Valor frete linha ${i + 1}`}
+                        aria-label={`Valor de entrega linha ${i + 1}`}
                       />
                     </td>
                     <td>
@@ -246,7 +246,7 @@ export function DeliveryRadiusSection({ accessToken }: Props) {
 
         <div className="card-footer-actions card-footer-actions--end">
           <ActionButton variant="filled" color="primary" loading={saving} disabled={busy} onClick={() => void saveRadius()}>
-            Salvar frete por raio
+            Salvar entrega por raio
           </ActionButton>
         </div>
       </section>

@@ -116,7 +116,7 @@ export async function getStoreDeliveryCosts(accessToken: string): Promise<unknow
   return res.json();
 }
 
-/** Cria faixa(s) de frete por raio sem `id` (POST …/delivery-costs/radius — Create store delivery cost). */
+/** Cria faixa(s) de entrega por raio sem `id` (POST …/delivery-costs/radius — Create store delivery cost). */
 export async function createStoreDeliveryCostsRadius(
   accessToken: string,
   payload: { radius: object[] },
@@ -129,7 +129,7 @@ export async function createStoreDeliveryCostsRadius(
     },
     body: JSON.stringify(payload),
   });
-  if (!res.ok) await parseError(res, `Não foi possível criar o frete por raio (${res.status}).`);
+  if (!res.ok) await parseError(res, `Não foi possível criar a entrega por raio (${res.status}).`);
   return res.json().catch(() => ({}));
 }
 
@@ -146,7 +146,7 @@ export async function updateStoreDeliveryCostsRadius(
     },
     body: JSON.stringify(payload),
   });
-  if (!res.ok) await parseError(res, `Não foi possível atualizar o frete por raio (${res.status}).`);
+  if (!res.ok) await parseError(res, `Não foi possível atualizar a entrega por raio (${res.status}).`);
   return res.json().catch(() => ({}));
 }
 

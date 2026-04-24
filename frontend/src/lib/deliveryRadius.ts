@@ -1,5 +1,5 @@
 /**
- * Faixa de frete por raio.
+ * Faixa de entrega por raio.
  * - POST (criar): sem `id`.
  * - PUT (atualizar): com `id` retornado pelo GET ([Update store delivery cost](https://developer.aiqfome.com/docs/api/v2/update-store-delivery-cost)).
  */

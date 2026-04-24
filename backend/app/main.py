@@ -159,7 +159,7 @@ async def post_working_hours(
 
 @app.get("/api/store/delivery-costs")
 async def get_delivery_costs(authorization: str | None = Header(default=None)) -> dict:
-    """GET /store/{id}/delivery-costs — custos de entrega (incl. frete por raio)."""
+    """GET /store/{id}/delivery-costs — custos de entrega (faixas por raio)."""
     token = parse_bearer_token(authorization)
     return await plataforma_get_store_path(
         token=token,
@@ -173,7 +173,7 @@ async def post_delivery_costs_radius(
     authorization: str | None = Header(default=None),
     body: Any = Body(...),
 ) -> dict:
-    """POST /store/{id}/delivery-costs/radius — criar faixa(s) de frete por raio (Create store delivery cost)."""
+    """POST /store/{id}/delivery-costs/radius — criar faixa(s) de entrega por raio (Create store delivery cost)."""
     token = parse_bearer_token(authorization)
     return await plataforma_request_store_path(
         token=token,
@@ -189,7 +189,7 @@ async def put_delivery_costs_radius(
     authorization: str | None = Header(default=None),
     body: Any = Body(...),
 ) -> dict:
-    """PUT /store/{id}/delivery-costs/radius — atualizar frete por raio (Update store delivery cost)."""
+    """PUT /store/{id}/delivery-costs/radius — atualizar entrega por raio (Update store delivery cost)."""
     token = parse_bearer_token(authorization)
     return await plataforma_request_store_path(
         token=token,

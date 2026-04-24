@@ -22,7 +22,7 @@ Endpoints:
 - `GET /api/store/working-hours` — [consulta horários](https://developer.aiqfome.com/docs/guides/v2/stores/store-delivery/working-time)
 - `PUT /api/store/delivery-time` — body JSON `{ "delivery_time": "40 - 60" }` (valores permitidos na doc)
 - `POST /api/store/working-hours` — body conforme POST da doc (substitui dias enviados)
-- `GET /api/store/delivery-costs` — GET …/store/{id}/delivery-costs (custos / frete por raio)
+- `GET /api/store/delivery-costs` — GET …/store/{id}/delivery-costs (custos de entrega por raio)
 - `POST /api/store/delivery-costs/radius` — criar faixas sem `id` no body ([Create store delivery cost](https://developer.aiqfome.com/docs/api/v2/create-store-delivery-cost))
 - `PUT /api/store/delivery-costs/radius` — atualizar faixas existentes: cada item inclui `id` ([Update store delivery cost](https://developer.aiqfome.com/docs/api/v2/update-store-delivery-cost))
 - `PUT /api/store/preparation-time` — body JSON `{ "preparation_time": 30 }` (múltiplo de 10)
