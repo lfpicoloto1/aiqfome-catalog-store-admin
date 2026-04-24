@@ -447,32 +447,32 @@ export function App() {
                       </geraldo-badge>
                     ) : null}
                   </div>
-                  <div className="store-hero__orders">
-                    <div className="store-hero__orders-text">
-                      <geraldo-text variant="body-default" weight="medium" as="p" className="store-hero__orders-title">
-                        Receber pedidos agora
-                      </geraldo-text>
-                      <geraldo-text variant="caption" as="p" className="store-hero__orders-caption">
-                        {store.storeFrontOpen === null
-                          ? "A plataforma não enviou o estado na última sincronização. O interruptor abaixo chama abrir ou fechar loja (API V2)."
-                          : store.storeFrontOpen
-                            ? "Sua loja está aberta para novos pedidos na aiqfome."
-                            : "Sua loja está fechada para novos pedidos na aiqfome."}
-                      </geraldo-text>
-                      {storeToggleBusy ? (
-                        <geraldo-text variant="caption" as="p" className="store-hero__orders-loading">
-                          Aplicando na plataforma…
-                        </geraldo-text>
-                      ) : null}
-                    </div>
-                    <div className="store-hero__orders-switch">
-                      <OpenSwitch
-                        checked={store.storeFrontOpen === true}
-                        disabled={storeToggleBusy || storeBusy}
-                        onChecked={onStoreFrontToggle}
-                      />
-                    </div>
-                  </div>
+                </div>
+              </div>
+              <div className="store-hero__orders store-hero__orders--card-body">
+                <div className="store-hero__orders-text">
+                  <geraldo-text variant="body-default" weight="medium" as="p" className="store-hero__orders-title">
+                    Receber pedidos agora
+                  </geraldo-text>
+                  <geraldo-text variant="caption" as="p" className="store-hero__orders-caption">
+                    {store.storeFrontOpen === null
+                      ? "A plataforma não enviou o estado na última sincronização. O interruptor abaixo chama abrir ou fechar loja (API V2)."
+                      : store.storeFrontOpen
+                        ? "Sua loja está aberta para novos pedidos na aiqfome."
+                        : "Sua loja está fechada para novos pedidos na aiqfome."}
+                  </geraldo-text>
+                  {storeToggleBusy ? (
+                    <geraldo-text variant="caption" as="p" className="store-hero__orders-loading">
+                      Aplicando na plataforma…
+                    </geraldo-text>
+                  ) : null}
+                </div>
+                <div className="store-hero__orders-switch">
+                  <OpenSwitch
+                    checked={store.storeFrontOpen === true}
+                    disabled={storeToggleBusy || storeBusy}
+                    onChecked={onStoreFrontToggle}
+                  />
                 </div>
               </div>
               <div slot="footer" className="card-footer-meta">
