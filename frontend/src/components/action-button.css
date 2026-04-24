@@ -1,0 +1,133 @@
+/**
+ * Botões nativos alinhados ao geraldo-button (tokens Geraldo).
+ * Evita falha de hidratação / filhos em <geraldo-button> com React 19.
+ */
+.g-action-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--geraldo-space-2, 6px);
+  width: auto;
+  max-width: 100%;
+  font-family: var(--geraldo-font-family, Ubuntu, system-ui, sans-serif);
+  font-weight: var(--geraldo-font-weight-medium, 500);
+  font-size: var(--geraldo-text-body-size, 16px);
+  line-height: 1.2;
+  border-radius: var(--geraldo-radius-button, 32px);
+  cursor: pointer;
+  border: var(--geraldo-border-width-2, 2px) solid transparent;
+  min-height: 44px;
+  padding: 0 var(--geraldo-space-5, 16px);
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.g-action-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--geraldo-focus-ring, 0 0 0 3px rgb(18 144 243 / 0.35));
+}
+
+.g-action-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.g-action-btn--sm {
+  min-height: 36px;
+  padding: 0 var(--geraldo-space-4, 12px);
+  font-size: var(--geraldo-text-secondary-size, 14px);
+  border-radius: var(--geraldo-radius-box-inner, 12px);
+}
+
+.g-action-btn--lg {
+  min-height: 52px;
+  padding: 0 var(--geraldo-space-7, 24px);
+  font-size: var(--geraldo-text-body-size, 16px);
+}
+
+/* Filled */
+.g-action-btn--filled.g-action-btn--primary {
+  background: var(--geraldo-color-primary-400, #7b1fa2);
+  color: var(--geraldo-color-neutral-0, #fff);
+  box-shadow: var(--geraldo-shadow-high, 0 8px 24px rgb(37 37 37 / 0.14));
+}
+
+.g-action-btn--filled.g-action-btn--primary:hover:not(:disabled) {
+  background: var(--geraldo-color-primary-600, #580f78);
+}
+
+.g-action-btn--filled.g-action-btn--secondary {
+  background: var(--geraldo-color-secondary-400, #00a296);
+  color: var(--geraldo-color-neutral-0, #fff);
+  box-shadow: var(--geraldo-shadow-mid, 0 4px 12px rgb(37 37 37 / 0.1));
+}
+
+.g-action-btn--filled.g-action-btn--secondary:hover:not(:disabled) {
+  background: var(--geraldo-color-secondary-600, #027a7a);
+}
+
+.g-action-btn--filled.g-action-btn--danger {
+  background: var(--geraldo-color-danger-400, #ff2722);
+  color: var(--geraldo-color-neutral-0, #fff);
+  box-shadow: var(--geraldo-shadow-mid, 0 4px 12px rgb(37 37 37 / 0.1));
+}
+
+.g-action-btn--filled.g-action-btn--danger:hover:not(:disabled) {
+  background: var(--geraldo-color-danger-600, #c11f1e);
+}
+
+/* Outline */
+.g-action-btn--outline.g-action-btn--primary {
+  background: transparent;
+  color: var(--geraldo-color-primary-600, #580f78);
+  border-color: var(--geraldo-color-primary-400, #7b1fa2);
+  box-shadow: none;
+}
+
+.g-action-btn--outline.g-action-btn--primary:hover:not(:disabled) {
+  background: var(--geraldo-color-primary-bg, #f9edff);
+}
+
+/* Ghost */
+.g-action-btn--ghost {
+  background: transparent;
+  box-shadow: none;
+}
+
+.g-action-btn--ghost.g-action-btn--primary {
+  color: var(--geraldo-color-primary-600, #580f78);
+  border-color: transparent;
+}
+
+.g-action-btn--ghost.g-action-btn--primary:hover:not(:disabled) {
+  background: var(--geraldo-color-surface-muted, #f5f5f5);
+}
+
+.g-action-btn__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.g-action-btn__spinner {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: g-action-spin 0.7s linear infinite;
+}
+
+@keyframes g-action-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
