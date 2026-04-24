@@ -282,13 +282,31 @@ body {
   transition: outline-color 0.2s ease;
 }
 
-geraldo-card.store-hero {
+/*
+ * Painel do hero: section nativa com o mesmo “cartão” do geraldo-card (article no shadow).
+ * Em alguns deploys o shadow do geraldo-card não aplicava fundo/sombra; aqui o fundo branco
+ * não depende do Lit.
+ */
+.store-hero-panel {
+  box-sizing: border-box;
   display: block;
   width: 100%;
   max-width: 100%;
+  margin: 0;
+  color: var(--geraldo-color-text, #252525);
+  font-family: var(--geraldo-font-family, Ubuntu, system-ui, sans-serif);
+  background: var(--geraldo-color-surface, #fff);
+  border: 1px solid var(--geraldo-color-border, #d3d3d3);
+  border-radius: var(--geraldo-radius-box-outer, 16px);
+  padding: var(--geraldo-space-5, 16px);
+  box-shadow: var(--geraldo-shadow-mid, 0 4px 12px rgb(37 37 37 / 0.1));
 }
 
-/* Único filho no slot default do geraldo-card: layout + pedidos em coluna. */
+.store-hero-panel__footer {
+  margin-top: 0.35rem;
+}
+
+/* Corpo do hero: layout + pedidos em coluna. */
 .store-hero__body {
   display: flex;
   flex-direction: column;
@@ -1026,9 +1044,14 @@ geraldo-card.schedule-card .delivery-radius-feedback {
   .wh-cell,
   .json-shell,
   .feedback-strip,
+  .store-hero-panel,
   .store-hero__orders {
     background: #1c1c1c;
     border-color: #333;
+  }
+
+  .store-hero-panel {
+    box-shadow: var(--geraldo-shadow-mid, 0 4px 12px rgb(0 0 0 / 0.45));
   }
 
   .inline-link {

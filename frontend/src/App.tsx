@@ -363,10 +363,9 @@ export function App() {
 
         {accessToken && store ? (
           <div className="dashboard">
-            <geraldo-card
-              radius="outer"
-              elevation="mid"
-              className={`store-hero${storeBusy ? " store-hero--refreshing" : ""}`}
+            <section
+              className={`store-hero-panel store-hero${storeBusy ? " store-hero--refreshing" : ""}`}
+              aria-label="Resumo da loja"
             >
               <div className="store-hero__body">
                 <div className="store-hero__layout">
@@ -477,12 +476,12 @@ export function App() {
                   </div>
                 </div>
               </div>
-              <div slot="footer" className="card-footer-meta">
+              <div className="card-footer-meta store-hero-panel__footer">
                 <geraldo-text variant="caption" as="span">
                   Dados resumidos da sua loja.
                 </geraldo-text>
               </div>
-            </geraldo-card>
+            </section>
 
             <WorkingHoursSection
               accessToken={accessToken}
